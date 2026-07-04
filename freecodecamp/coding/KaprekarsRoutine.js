@@ -44,6 +44,19 @@ function kaprekar(num){
 }
 /**
  * 
+ * 
+ * => digits is already an array of characters, from split("").
+ * => Array.prototype.sort() sorts in JavaScript mutates the array in place.
+ * => If you call digits.sort(...), you'd premanenetly change the order of digits.
+ * => Later, when you want to sort ascending (asc), you'd be sorting an already mutated array, which can cause incorrect results.
+ * 
+ * 
+ * => digits.slice() create a shallow copy of the digits array, so that the original order is preserved for the next sort operation. (it creates the shallow copy of the array).
+ * => That way, when you sor the copy, the original digits stays intact.
+ * => you can then reuse digits for both ascending and descending sorts without interference.
+ * 
+ * If you didn't use slice(), after the first sort digits would already be "5432" , and the ascending sort would give "2346" but starting from the wrong base array.
+ * 
  * => Valid numbers converage to 6174 in <= 7 steps.
  * => Invalid numbers (all digits equal) collapse to 0000 and loop forever.
  * => Adding a pre-check or iteration cap prevents infinite loops.
